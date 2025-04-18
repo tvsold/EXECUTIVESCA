@@ -72,20 +72,27 @@
       margin-bottom: 2rem;
     }
 
-    #glow-btn {
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: 30px;
-      background: white;
-      color: black;
-      font-size: 1rem;
-      font-family: 'Libre Baskerville', serif;
-      cursor: pointer;
-      box-shadow: 0 0 0 2px black;
-      transition: all 0.2s ease;
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
     }
 
-    #glow-btn:hover {
+    .menu-btn {
+      padding: 0.8rem 2rem;
+      background: white;
+      color: black;
+      border: 2px solid black;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-family: 'Libre Baskerville', serif;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 200px;
+    }
+
+    .menu-btn:hover {
       background: black;
       color: white;
       box-shadow: 0 0 10px black;
@@ -97,13 +104,14 @@
   <main class="content">
     <h1>WildCats Voices</h1>
     <p>Submit an idea for homecoming, spirit days, or fundraising events!</p>
-    <button id="glow-btn">Submit an Idea</button>
-  </main>
 
-  <script>
-    document.getElementById("glow-btn").addEventListener("click", () => {
-      alert("Submission feature coming soon!");
-    });
-  </script>
+    <div class="btn-group">
+      <button class="menu-btn">Get Started</button>
+      <button class="menu-btn">25–26 SCA</button>
+      <button class="menu-btn">About</button>
+      <button class="menu-btn">Credits</button>
+    </div>
+  </main>
 </body>
 </html>
+
