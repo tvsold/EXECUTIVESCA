@@ -113,8 +113,10 @@
       border-radius: 20px;
       padding: 0.5rem 1rem;
       font-size: 1rem;
+      font-family: 'Libre Baskerville', serif;
       text-decoration: none;
       transition: all 0.2s ease;
+      z-index: 2;
     }
 
     .back-btn:hover {
@@ -148,9 +150,9 @@
 
   <!-- Credits Page -->
   <main class="page" id="credits-page">
-    <button class="back-btn" onclick="showPage('main-page')">← Back to Main Page</button>
-    <h1>Credits:</h1>
-    <div class="credits-content">
+    <button class="back-btn fade fade-delay-1" onclick="showPage('main-page')">← Back to Main Page</button>
+    <h1 class="fade fade-delay-2">Credits:</h1>
+    <div class="credits-content fade fade-delay-3">
       <p>Website Developed By: <strong>Tulsi</strong></p>
       <p>Platform Used: <strong>GitHub</strong></p>
     </div>
@@ -159,7 +161,15 @@
   <script>
     function showPage(id) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
+      const newPage = document.getElementById(id);
+      newPage.classList.add('active');
+
+      // Re-trigger fade animations
+      newPage.querySelectorAll('.fade').forEach(el => {
+        el.style.animation = 'none';
+        el.offsetHeight; // force reflow
+        el.style.animation = '';
+      });
     }
   </script>
 </body>
