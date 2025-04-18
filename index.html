@@ -6,17 +6,17 @@
   <title>WildCats Voices</title>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
   <style>
-    * {
+    body {
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
       font-family: 'Libre Baskerville', serif;
       background-color: #84a6ee;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
       overflow: hidden;
+      position: relative;
     }
 
     .grain-overlay {
@@ -29,78 +29,82 @@
       z-index: 0;
     }
 
-    @keyframes fadeUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .fade {
-      opacity: 0;
-      animation: fadeUp 0.8s ease-out forwards;
-    }
-
-    .fade-delay-1 { animation-delay: 0.3s; }
-    .fade-delay-2 { animation-delay: 0.6s; }
-    .fade-delay-3 { animation-delay: 0.9s; }
-    .fade-delay-4 { animation-delay: 1.2s; }
-    .fade-delay-5 { animation-delay: 1.5s; }
-    .fade-delay-6 { animation-delay: 1.8s; }
-
-    .page {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      padding: 2rem;
-      position: relative;
-      z-index: 1;
-      text-align: center;
-    }
-
-    .page.active {
-      display: flex;
-    }
-
     h1 {
+      font-size: 3rem;
       color: white;
-      text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black, 0px 0px 6px black;
-      font-size: 3.2rem;
+      text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
       margin-bottom: 1rem;
+      z-index: 1;
+      animation: fadeUp 1s ease-out forwards;
     }
 
     p {
+      font-size: 1.2rem;
       color: white;
-      text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
-      font-size: 1.3rem;
       max-width: 600px;
+      text-align: center;
       margin-bottom: 2rem;
+      text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+      z-index: 1;
+      animation: fadeUp 1s ease-out forwards;
+      animation-delay: 0.3s;
+      opacity: 0;
     }
 
-    .btn-group {
+    .menu {
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      align-items: center;
+      z-index: 1;
+      animation: fadeUp 1s ease-out forwards;
+      animation-delay: 0.6s;
+      opacity: 0;
     }
 
     .menu-btn {
-      padding: 0.8rem 2rem;
       background: white;
       color: black;
       border: 2px solid black;
       border-radius: 30px;
+      padding: 0.8rem 1.5rem;
       font-size: 1.1rem;
+      text-decoration: none;
       font-family: 'Libre Baskerville', serif;
-      cursor: pointer;
       transition: all 0.2s ease;
-      width: 200px;
+      cursor: pointer;
+      text-align: center;
     }
 
     .menu-btn:hover {
       background: black;
       color: white;
       box-shadow: 0 0 10px black;
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .about-section {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: #84a6ee;
+      z-index: 10;
+      animation: fadeUp 1s ease-out forwards;
+    }
+
+    .about-section p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
     }
 
     .back-btn {
@@ -116,7 +120,7 @@
       font-family: 'Libre Baskerville', serif;
       text-decoration: none;
       transition: all 0.2s ease;
-      z-index: 2;
+      z-index: 11;
     }
 
     .back-btn:hover {
@@ -124,56 +128,43 @@
       color: white;
       box-shadow: 0 0 10px black;
     }
-
-    .credits-content {
-      margin-top: 2rem;
-      font-size: 1.3rem;
-      color: white;
-      text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
-    }
   </style>
 </head>
 <body>
   <div class="grain-overlay"></div>
 
   <!-- Main Page -->
-  <main class="page active" id="main-page">
-    <h1 class="fade fade-delay-1">WildCats Voices</h1>
-    <p class="fade fade-delay-2">Submit an idea for homecoming, spirit days, or fundraising events!</p>
-    <div class="btn-group">
-      <button class="menu-btn fade fade-delay-3">Get Started</button>
-      <button class="menu-btn fade fade-delay-4">25–26 SCA</button>
-      <button class="menu-btn fade fade-delay-5">About</button>
-      <button class="menu-btn fade fade-delay-6" onclick="showPage('credits-page')">Credits</button>
-    </div>
-  </main>
+  <h1>WildCats Voices</h1>
+  <p>Submit an idea for homecoming, spirit days, or fundraising events!</p>
+  <div class="menu">
+    <a href="#" class="menu-btn">Get Started</a>
+    <a href="#" class="menu-btn">25–26 SCA</a>
+    <button class="menu-btn" onclick="showAbout()">About</button>
+    <a href="credits.html" class="menu-btn">Credits</a>
+  </div>
 
-  <!-- Credits Page -->
-  <main class="page" id="credits-page">
-    <button class="back-btn fade fade-delay-1" onclick="showPage('main-page')">← Back to Main Page</button>
-    <h1 class="fade fade-delay-2">Credits:</h1>
-    <div class="credits-content fade fade-delay-3">
-      <p>Website Developed By: <strong>Tulsi</strong></p>
-      <p>Platform Used: <strong>GitHub</strong></p>
-      <p>Date Created: <strong>4/18/2025</strong></p>
-    </div>
-  </main>
+  <!-- About Section -->
+  <div class="about-section" id="aboutSection">
+    <a href="#" class="back-btn" onclick="hideAbout()">← Back to Main Page</a>
+    <h1>About</h1>
+    <p><strong>WildCats Voices</strong> is your space to speak up and bring ideas to life! Whether it's a new spirit day, a fundraiser, or a homecoming theme, just submit your idea and we’ll bring it to the table during SCA meetings.</p>
+    <p>The Student Council is here to represent <strong>YOU</strong>, so don’t hold back — your voice matters!</p>
+  </div>
 
   <script>
-    function showPage(id) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      const newPage = document.getElementById(id);
-      newPage.classList.add('active');
-
-      // Re-trigger fade animations
-      newPage.querySelectorAll('.fade').forEach(el => {
-        el.style.animation = 'none';
-        el.offsetHeight; // force reflow
-        el.style.animation = '';
-      });
+    function showAbout() {
+      document.getElementById('aboutSection').style.display = 'flex';
     }
+
+    function hideAbout() {
+      document.getElementById('aboutSection').style.display = 'none';
+    }
+
+    // Fade-in paragraph on load
+    window.addEventListener('load', () => {
+      document.querySelector('p').style.opacity = 1;
+    });
   </script>
 </body>
 </html>
-
 
