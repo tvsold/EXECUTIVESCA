@@ -4,98 +4,137 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>WildCats Voices</title>
+
+  <!-- Libre Baskerville Font -->
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+
   <style>
-    body {
+    /* Reset */
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
       font-family: 'Libre Baskerville', serif;
       background-color: #84a6ee;
-      text-align: center;
-      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Grainy Overlay */
+    .grain-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
+      opacity: 0.06;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Animation */
+    @keyframes fadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade {
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out forwards;
+    }
+
+    .fade-delay-1 { animation-delay: 0.3s; }
+    .fade-delay-2 { animation-delay: 0.6s; }
+    .fade-delay-3 { animation-delay: 0.9s; }
+    .fade-delay-4 { animation-delay: 1.2s; }
+    .fade-delay-5 { animation-delay: 1.5s; }
+
+    /* Content */
+    .content {
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      padding: 2rem;
     }
 
     h1 {
       color: white;
-      font-size: 3rem;
-      text-shadow: 2px 2px 5px black;
+      text-shadow:
+        -2px -2px 0 black,
+         2px -2px 0 black,
+        -2px  2px 0 black,
+         2px  2px 0 black,
+         0px  0px 6px black;
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
     }
 
-    .description {
-      font-size: 1.2rem;
+    p {
       color: white;
-      margin-bottom: 2rem;
+      text-shadow:
+        -1px -1px 0 black,
+         1px -1px 0 black,
+        -1px  1px 0 black,
+         1px  1px 0 black;
+      font-size: 1.3rem;
       max-width: 600px;
-      text-shadow: 2px 2px 5px black;
+      margin-bottom: 2rem;
     }
 
-    .button-container {
+    .btn-group {
       display: flex;
       flex-direction: column;
       gap: 1rem;
+      align-items: center;
     }
 
     .menu-btn {
       padding: 0.8rem 2rem;
-      font-size: 1.1rem;
       background: white;
       color: black;
       border: 2px solid black;
-      border-radius: 25px;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-family: 'Libre Baskerville', serif;
       cursor: pointer;
       transition: all 0.2s ease;
+      width: 200px;
     }
 
     .menu-btn:hover {
       background: black;
       color: white;
-    }
-
-    .back-btn {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      padding: 0.8rem 2rem;
-      font-size: 1rem;
-      background: white;
-      color: black;
-      border: 2px solid black;
-      border-radius: 25px;
-      cursor: pointer;
-    }
-
-    .button-container a {
-      text-decoration: none;
+      box-shadow: 0 0 10px black;
     }
   </style>
 </head>
 <body>
-  <a href="index.html">
-    <button class="back-btn">Back to Main Page</button>
-  </a>
+  <div class="grain-overlay"></div>
+  <main class="content">
+    <h1 class="fade fade-delay-1">WildCats Voices</h1>
+    <p class="fade fade-delay-2">Submit an idea for homecoming, spirit days, or fundraising events!</p>
 
-  <h1>WildCats Voices</h1>
-  <p class="description">Submit your ideas for homecoming, spirit days, or fundraising events!</p>
-
-  <!-- Button Links -->
-  <div class="button-container">
-    <a href="loading.html">
-      <button class="menu-btn">Get Started</button>
-    </a>
-    <a href="25-26.html">
-      <button class="menu-btn">25-26 SCA</button>
-    </a>
-    <a href="about.html">
-      <button class="menu-btn">About</button>
-    </a>
-    <a href="credits.html">
-      <button class="menu-btn">Credits</button>
-    </a>
-  </div>
+    <div class="btn-group">
+      <button class="menu-btn fade fade-delay-3">Get Started</button>
+      <button class="menu-btn fade fade-delay-4">25–26 SCA</button>
+      <button class="menu-btn fade fade-delay-5">About</button>
+      <button class="menu-btn fade fade-delay-5" style="animation-delay: 1.8s;">Credits</button>
+    </div>
+  </main>
 </body>
 </html>
-
 
