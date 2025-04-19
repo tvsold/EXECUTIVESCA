@@ -186,8 +186,6 @@
     }
 
     .loading-text {
-      display: flex;
-      gap: 4px;
       font-size: 2rem;
       font-weight: bold;
       color: white;
@@ -202,11 +200,6 @@
     .loading-text span:nth-child(1) { animation-delay: 0s; }
     .loading-text span:nth-child(2) { animation-delay: 0.1s; }
     .loading-text span:nth-child(3) { animation-delay: 0.2s; }
-    .loading-text span:nth-child(4) { animation-delay: 0.3s; }
-    .loading-text span:nth-child(5) { animation-delay: 0.4s; }
-    .loading-text span:nth-child(6) { animation-delay: 0.5s; }
-    .loading-text span:nth-child(7) { animation-delay: 0.6s; }
-    .loading-text span:nth-child(8) { animation-delay: 0.7s; }
 
     @keyframes bounce {
       0%, 100% {
@@ -216,14 +209,6 @@
         transform: translateY(-10px);
       }
     }
-
-    .loading-icon {
-      width: 40px;
-      height: 40px;
-      background: url('https://cdn.iconscout.com/icon/free/png-256/cat-104-458113.png') no-repeat center;
-      background-size: contain;
-      margin-right: 10px;
-    }
   </style>
 </head>
 <body>
@@ -232,7 +217,6 @@
   <!-- Loading Screen -->
   <div id="loading-screen">
     <div class="loading-text">
-      <div class="loading-icon"></div>
       <span>L</span><span>o</span><span>a</span><span>d</span><span>i</span><span>n</span><span>g</span><span>...</span>
     </div>
     <div class="loading-bar">
