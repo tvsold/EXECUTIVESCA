@@ -45,7 +45,6 @@
     .fade-delay-2 { animation-delay: 0.4s; }
     .fade-delay-3 { animation-delay: 0.6s; }
     .fade-delay-4 { animation-delay: 0.8s; }
-    .fade-delay-5 { animation-delay: 1s; }
 
     h1 {
       color: white;
@@ -132,10 +131,60 @@
       align-items: center;
       padding-top: 4rem;
     }
+
+    /* Loading screen */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.8rem;
+      z-index: 1000;
+      transition: opacity 0.5s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #loading-screen.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .loader-text {
+      color: #333;
+      text-shadow: 1px 1px 0 white;
+    }
+
+    .dots::after {
+      content: '';
+      display: inline-block;
+      animation: dots 1s steps(3, end) infinite;
+      vertical-align: bottom;
+      width: 1ch;
+      text-align: left;
+    }
+
+    @keyframes dots {
+      0% { content: ''; }
+      33% { content: '.'; }
+      66% { content: '..'; }
+      100% { content: '...'; }
+    }
   </style>
 </head>
 <body>
   <div class="grain-overlay"></div>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loader-text">Loading<span class="dots">...</span></div>
+  </div>
 
   <!-- Main Page -->
   <div class="page-content" id="main-page">
@@ -187,19 +236,31 @@
 
   <script>
     function showSection(sectionId) {
-      document.getElementById("main-page").style.display = "none";
-      const sections = document.querySelectorAll(".hidden-section");
-      sections.forEach(sec => sec.style.display = "none");
-      const section = document.getElementById(sectionId);
-      if (section) {
-        section.style.display = "flex";
-      }
+      const loader = document.getElementById("loading-screen");
+      loader.classList.add("active");
+
+      setTimeout(() => {
+        loader.classList.remove("active");
+        document.getElementById("main-page").style.display = "none";
+        const sections = document.querySelectorAll(".hidden-section");
+        sections.forEach(sec => sec.style.display = "none");
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.style.display = "flex";
+        }
+      }, 1500); // 1.5 seconds
     }
 
     function goHome() {
-      const sections = document.querySelectorAll(".hidden-section");
-      sections.forEach(sec => sec.style.display = "none");
-      document.getElementById("main-page").style.display = "flex";
+      const loader = document.getElementById("loading-screen");
+      loader.classList.add("active");
+
+      setTimeout(() => {
+        loader.classList.remove("active");
+        const sections = document.querySelectorAll(".hidden-section");
+        sections.forEach(sec => sec.style.display = "none");
+        document.getElementById("main-page").style.display = "flex";
+      }, 1500);
     }
   </script>
 </body>
