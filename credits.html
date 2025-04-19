@@ -4,21 +4,62 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Credits - WildCats Voices</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
-
   <style>
     body {
       margin: 0;
-      padding: 2rem;
       font-family: 'Libre Baskerville', serif;
       background-color: #84a6ee;
-      color: white;
-      background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
-      background-repeat: repeat;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 2rem;
     }
 
-    .back-button {
+    .grain-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
+      opacity: 0.06;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade {
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out forwards;
+    }
+
+    .fade-delay-1 { animation-delay: 0.3s; }
+    .fade-delay-2 { animation-delay: 0.6s; }
+    .fade-delay-3 { animation-delay: 0.9s; }
+
+    h1 {
+      color: white;
+      text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .credits-text {
+      font-size: 1.3rem;
+      color: white;
+      max-width: 700px;
+      text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+    }
+
+    .back-btn {
       position: absolute;
       top: 20px;
       left: 20px;
@@ -28,48 +69,29 @@
       border-radius: 20px;
       padding: 0.5rem 1rem;
       font-size: 1rem;
+      font-family: 'Libre Baskerville', serif;
       text-decoration: none;
       transition: all 0.2s ease;
+      z-index: 2;
     }
 
-    .back-button:hover {
+    .back-btn:hover {
       background: black;
       color: white;
       box-shadow: 0 0 10px black;
     }
-
-    h1 {
-      margin-top: 100px;
-      font-size: 2.5rem;
-      text-shadow:
-        -2px -2px 0 black,
-         2px -2px 0 black,
-        -2px  2px 0 black,
-         2px  2px 0 black;
-      color: white;
-      text-align: center;
-    }
-
-    .credits-content {
-      margin-top: 2rem;
-      text-align: center;
-      font-size: 1.3rem;
-      text-shadow:
-        -1px -1px 0 black,
-         1px -1px 0 black,
-        -1px  1px 0 black,
-         1px  1px 0 black;
-    }
   </style>
 </head>
 <body>
-  <a class="back-button" href="index.html">← Back to Main Page</a>
+  <div class="grain-overlay"></div>
 
-  <h1>Credits:</h1>
-
-  <div class="credits-content">
-    <p>Website Developed By: <strong>Tulsi</strong></p>
-    <p>Platform Used: <strong>GitHub</strong></p>
+  <a href="index.html" class="back-btn fade fade-delay-1">← Back to Main Page</a>
+  <h1 class="fade fade-delay-1">Credits</h1>
+  <div class="credits-text fade fade-delay-2">
+    <p><strong>Developer:</strong> Tulsi</p>
+    <p><strong>Platform:</strong> GitHub</p>
+    <p><strong>Date Created:</strong> 4/18/2025</p>
   </div>
 </body>
 </html>
+
