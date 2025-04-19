@@ -132,7 +132,7 @@
       padding-top: 4rem;
     }
 
-    /* Cute custom loading screen */
+    /* Custom loading screen */
     #loading-screen {
       position: fixed;
       top: 0;
@@ -141,6 +141,7 @@
       width: 100%;
       background-color: #84a6ee;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       z-index: 9999;
@@ -162,6 +163,7 @@
       border-radius: 10px;
       overflow: hidden;
       position: relative;
+      margin-top: 20px;
     }
 
     .loading-fill {
@@ -182,6 +184,46 @@
         width: 100%;
       }
     }
+
+    .loading-text {
+      display: flex;
+      gap: 4px;
+      font-size: 2rem;
+      font-weight: bold;
+      color: white;
+      text-shadow: 2px 2px 0 black;
+    }
+
+    .loading-text span {
+      display: inline-block;
+      animation: bounce 1s infinite ease-in-out;
+    }
+
+    .loading-text span:nth-child(1) { animation-delay: 0s; }
+    .loading-text span:nth-child(2) { animation-delay: 0.1s; }
+    .loading-text span:nth-child(3) { animation-delay: 0.2s; }
+    .loading-text span:nth-child(4) { animation-delay: 0.3s; }
+    .loading-text span:nth-child(5) { animation-delay: 0.4s; }
+    .loading-text span:nth-child(6) { animation-delay: 0.5s; }
+    .loading-text span:nth-child(7) { animation-delay: 0.6s; }
+    .loading-text span:nth-child(8) { animation-delay: 0.7s; }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .loading-icon {
+      width: 30px;
+      height: 30px;
+      background: url('https://cdn.icon-icons.com/icons2/2476/PNG/512/cat_icon_151031.png') no-repeat center;
+      background-size: contain;
+      margin-right: 10px;
+    }
   </style>
 </head>
 <body>
@@ -189,6 +231,10 @@
 
   <!-- Loading Screen -->
   <div id="loading-screen">
+    <div class="loading-text">
+      <div class="loading-icon"></div>
+      <span>L</span><span>o</span><span>a</span><span>d</span><span>i</span><span>n</span><span>g</span><span>.</span>
+    </div>
     <div class="loading-bar">
       <div class="loading-fill"></div>
     </div>
@@ -246,10 +292,10 @@
     function showSection(sectionId) {
       const loader = document.getElementById("loading-screen");
       const fill = document.querySelector(".loading-fill");
-      fill.style.width = "0"; // Reset
+      fill.style.width = "0";
       loader.classList.add("active");
       fill.classList.remove("loading-fill");
-      void fill.offsetWidth; // Trigger reflow
+      void fill.offsetWidth;
       fill.classList.add("loading-fill");
 
       setTimeout(() => {
@@ -278,4 +324,3 @@
   </script>
 </body>
 </html>
-
