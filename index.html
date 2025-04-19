@@ -132,23 +132,21 @@
       padding-top: 4rem;
     }
 
-    /* Loading screen */
+    /* Cute custom loading screen */
     #loading-screen {
       position: fixed;
       top: 0;
       left: 0;
       height: 100%;
       width: 100%;
-      background: rgba(255, 255, 255, 0.9);
+      background-color: #84a6ee;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: 'Libre Baskerville', serif;
-      font-size: 1.8rem;
-      z-index: 1000;
-      transition: opacity 0.5s ease;
+      z-index: 9999;
       opacity: 0;
       pointer-events: none;
+      transition: opacity 0.5s ease;
     }
 
     #loading-screen.active {
@@ -156,25 +154,33 @@
       pointer-events: all;
     }
 
-    .loader-text {
-      color: #333;
-      text-shadow: 1px 1px 0 white;
+    .loading-bar {
+      width: 300px;
+      height: 30px;
+      background: white;
+      border: 3px solid black;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
     }
 
-    .dots::after {
-      content: '';
-      display: inline-block;
-      animation: dots 1s steps(3, end) infinite;
-      vertical-align: bottom;
-      width: 1ch;
-      text-align: left;
+    .loading-fill {
+      height: 100%;
+      width: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        #6c91db,
+        #6c91db 10px,
+        #84a6ee 10px,
+        #84a6ee 20px
+      );
+      animation: fillBar 1.5s ease-in-out forwards;
     }
 
-    @keyframes dots {
-      0% { content: ''; }
-      33% { content: '.'; }
-      66% { content: '..'; }
-      100% { content: '...'; }
+    @keyframes fillBar {
+      to {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -183,7 +189,9 @@
 
   <!-- Loading Screen -->
   <div id="loading-screen">
-    <div class="loader-text">Loading<span class="dots">...</span></div>
+    <div class="loading-bar">
+      <div class="loading-fill"></div>
+    </div>
   </div>
 
   <!-- Main Page -->
@@ -237,31 +245,37 @@
   <script>
     function showSection(sectionId) {
       const loader = document.getElementById("loading-screen");
+      const fill = document.querySelector(".loading-fill");
+      fill.style.width = "0"; // Reset
       loader.classList.add("active");
+      fill.classList.remove("loading-fill");
+      void fill.offsetWidth; // Trigger reflow
+      fill.classList.add("loading-fill");
 
       setTimeout(() => {
         loader.classList.remove("active");
         document.getElementById("main-page").style.display = "none";
-        const sections = document.querySelectorAll(".hidden-section");
-        sections.forEach(sec => sec.style.display = "none");
-        const section = document.getElementById(sectionId);
-        if (section) {
-          section.style.display = "flex";
-        }
-      }, 1500); // 1.5 seconds
+        document.querySelectorAll(".hidden-section").forEach(sec => sec.style.display = "none");
+        document.getElementById(sectionId).style.display = "flex";
+      }, 1500);
     }
 
     function goHome() {
       const loader = document.getElementById("loading-screen");
+      const fill = document.querySelector(".loading-fill");
+      fill.style.width = "0";
       loader.classList.add("active");
+      fill.classList.remove("loading-fill");
+      void fill.offsetWidth;
+      fill.classList.add("loading-fill");
 
       setTimeout(() => {
         loader.classList.remove("active");
-        const sections = document.querySelectorAll(".hidden-section");
-        sections.forEach(sec => sec.style.display = "none");
+        document.querySelectorAll(".hidden-section").forEach(sec => sec.style.display = "none");
         document.getElementById("main-page").style.display = "flex";
       }, 1500);
     }
   </script>
 </body>
 </html>
+
