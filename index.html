@@ -14,11 +14,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      overflow-x: hidden;
+      justify-content: center;
       text-align: center;
-      position: relative;
-      padding: 2rem;
     }
 
     .grain-overlay {
@@ -31,26 +28,10 @@
       z-index: 0;
     }
 
-    @keyframes fadeUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .fade {
-      opacity: 0;
-      animation: fadeUp 0.8s ease-out forwards;
-    }
-
-    .fade-delay-1 { animation-delay: 0.2s; }
-    .fade-delay-2 { animation-delay: 0.4s; }
-    .fade-delay-3 { animation-delay: 0.6s; }
-    .fade-delay-4 { animation-delay: 0.8s; }
-
     h1 {
       color: white;
       text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
       font-size: 3rem;
-      margin: 2rem 0 1rem;
     }
 
     .description {
@@ -65,13 +46,11 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      z-index: 2;
     }
 
     .menu-btn {
       padding: 0.8rem 2rem;
       font-size: 1.1rem;
-      font-family: 'Libre Baskerville', serif;
       background: white;
       color: black;
       border: 2px solid black;
@@ -86,99 +65,55 @@
       box-shadow: 0 0 10px black;
     }
 
-    /* Loading Screen Styles */
-    #loading-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #84a6ee;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 10000;
-    }
-
-    #loading-screen .loader {
-      width: 200px;
-      height: 30px;
-      border: 5px solid black;
-      border-radius: 25px;
-      background-color: white;
-      position: relative;
-    }
-
-    #loading-screen .loader .bar {
-      height: 100%;
-      background-color: #4bb5e3;
+    /* Back to Main Page Button */
+    .back-btn {
       position: absolute;
-      width: 0;
-      animation: loadBar 2s ease-out forwards;
+      top: 20px;
+      left: 20px;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      background: white;
+      color: black;
+      border: 2px solid black;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 3;
     }
 
-    @keyframes loadBar {
-      100% { width: 100%; }
-    }
-
-    #loading-screen .loading-text {
-      font-size: 2rem;
+    .back-btn:hover {
+      background: black;
       color: white;
-      font-family: 'Libre Baskerville', serif;
-      margin-top: 10px;
-      animation: fadeUp 1s ease-out forwards;
-      opacity: 0;
-      animation-delay: 0.5s;
+      box-shadow: 0 0 10px black;
     }
   </style>
 </head>
 <body>
   <div class="grain-overlay"></div>
 
-  <!-- Main Page Content -->
-  <div class="page-content">
-    <h1 class="fade fade-delay-1">WildCats Voices</h1>
-    <p class="description fade fade-delay-2">
-      Submit an idea for homecoming, spirit days, or fundraising events!
-    </p>
+  <!-- Back to Main Page Button -->
+  <a href="index.html">
+    <button class="back-btn">Back to Main Page</button>
+  </a>
 
-    <div class="button-container fade fade-delay-3">
-      <!-- Links to other pages -->
-      <a href="get-started.html">
-        <button class="menu-btn" onclick="showLoading()">Get Started</button>
-      </a>
-      <a href="sca.html">
-        <button class="menu-btn" onclick="showLoading()">25-26 SCA</button>
-      </a>
-      <a href="about.html">
-        <button class="menu-btn" onclick="showLoading()">About</button>
-      </a>
-      <a href="credits.html">
-        <button class="menu-btn" onclick="showLoading()">Credits</button>
-      </a>
-    </div>
+  <!-- Main Content -->
+  <h1>WildCats Voices</h1>
+  <p class="description">Submit your ideas for homecoming, spirit days, or fundraising events!</p>
+
+  <!-- Button Links -->
+  <div class="button-container">
+    <a href="loading.html">
+      <button class="menu-btn">Get Started</button>
+    </a>
+    <a href="25-26.html">
+      <button class="menu-btn">25-26 SCA</button>
+    </a>
+    <a href="about.html">
+      <button class="menu-btn">About</button>
+    </a>
+    <a href="credits.html">
+      <button class="menu-btn">Credits</button>
+    </a>
   </div>
-
-  <!-- Loading Screen -->
-  <div id="loading-screen">
-    <div class="loader">
-      <div class="bar"></div>
-    </div>
-    <div class="loading-text">
-      Loading...
-    </div>
-  </div>
-
-  <script>
-    // Function to show loading screen
-    function showLoading() {
-      document.getElementById('loading-screen').style.display = 'flex';
-
-      setTimeout(() => {
-        window.location.href = event.target.getAttribute('href');
-      }, 2000); // Time to show the loading screen before redirecting
-    }
-  </script>
 </body>
 </html>
-
