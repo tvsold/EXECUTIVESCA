@@ -12,11 +12,13 @@
       background-color: #84a6ee;
       height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
-      overflow: hidden;
+      overflow-x: hidden;
+      text-align: center;
       position: relative;
+      padding: 2rem;
     }
 
     .grain-overlay {
@@ -29,50 +31,54 @@
       z-index: 0;
     }
 
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade {
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out forwards;
+    }
+
+    .fade-delay-1 { animation-delay: 0.2s; }
+    .fade-delay-2 { animation-delay: 0.4s; }
+    .fade-delay-3 { animation-delay: 0.6s; }
+    .fade-delay-4 { animation-delay: 0.8s; }
+    .fade-delay-5 { animation-delay: 1s; }
+
     h1 {
-      font-size: 3rem;
       color: white;
       text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
+      font-size: 3rem;
       margin-bottom: 1rem;
-      z-index: 1;
-      animation: fadeUp 1s ease-out forwards;
     }
 
-    p {
+    .description {
       font-size: 1.2rem;
       color: white;
-      max-width: 600px;
-      text-align: center;
-      margin-bottom: 2rem;
       text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
-      z-index: 1;
-      animation: fadeUp 1s ease-out forwards;
-      animation-delay: 0.3s;
-      opacity: 0;
+      margin-bottom: 2rem;
+      max-width: 600px;
     }
 
-    .menu {
+    .button-container {
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      z-index: 1;
-      animation: fadeUp 1s ease-out forwards;
-      animation-delay: 0.6s;
-      opacity: 0;
+      z-index: 2;
     }
 
     .menu-btn {
+      padding: 0.8rem 2rem;
+      font-size: 1.1rem;
+      font-family: 'Libre Baskerville', serif;
       background: white;
       color: black;
       border: 2px solid black;
-      border-radius: 30px;
-      padding: 0.8rem 1.5rem;
-      font-size: 1.1rem;
-      text-decoration: none;
-      font-family: 'Libre Baskerville', serif;
-      transition: all 0.2s ease;
+      border-radius: 25px;
       cursor: pointer;
-      text-align: center;
+      transition: all 0.2s ease;
     }
 
     .menu-btn:hover {
@@ -81,36 +87,24 @@
       box-shadow: 0 0 10px black;
     }
 
-    @keyframes fadeUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .about-section {
+    .hidden-section {
       display: none;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
-      text-align: center;
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: #84a6ee;
-      z-index: 10;
-      animation: fadeUp 1s ease-out forwards;
+      animation: fadeUp 0.8s ease-out forwards;
+      margin-top: 2rem;
     }
 
-    .about-section p {
+    .credits-text, .about-text {
+      color: white;
+      text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
       font-size: 1.2rem;
       max-width: 700px;
-      text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
     }
 
     .back-btn {
-      position: absolute;
-      top: 20px;
-      left: 20px;
+      align-self: flex-start;
       background: white;
       color: black;
       border: 2px solid black;
@@ -120,7 +114,7 @@
       font-family: 'Libre Baskerville', serif;
       text-decoration: none;
       transition: all 0.2s ease;
-      z-index: 11;
+      margin-bottom: 1rem;
     }
 
     .back-btn:hover {
@@ -128,42 +122,80 @@
       color: white;
       box-shadow: 0 0 10px black;
     }
+
+    .page-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   </style>
 </head>
 <body>
   <div class="grain-overlay"></div>
 
-  <!-- Main Page -->
-  <h1>WildCats Voices</h1>
-  <p>Submit an idea for homecoming, spirit days, or fundraising events!</p>
-  <div class="menu">
-    <a href="#" class="menu-btn">Get Started</a>
-    <a href="#" class="menu-btn">25–26 SCA</a>
-    <button class="menu-btn" onclick="showAbout()">About</button>
-    <a href="credits.html" class="menu-btn">Credits</a>
+  <!-- Main Content -->
+  <div class="page-content" id="main-page">
+    <h1 class="fade fade-delay-1">WildCats Voices</h1>
+    <p class="description fade fade-delay-2">
+      Submit an idea for homecoming, spirit days, or fundraising events!
+    </p>
+    <div class="button-container fade fade-delay-3">
+      <button class="menu-btn" onclick="showSection('get-started')">Get Started</button>
+      <button class="menu-btn" onclick="showSection('sca')">25-26 SCA</button>
+      <button class="menu-btn" onclick="showSection('about')">About</button>
+      <button class="menu-btn" onclick="showSection('credits')">Credits</button>
+    </div>
+  </div>
+
+  <!-- Credits Section -->
+  <div class="hidden-section" id="credits">
+    <button class="back-btn" onclick="goHome()">← Back to Main Page</button>
+    <h1>Credits</h1>
+    <div class="credits-text">
+      <p><strong>Developer:</strong> Tulsi</p>
+      <p><strong>Platform:</strong> GitHub</p>
+      <p><strong>Date Created:</strong> 4/18/2025</p>
+    </div>
   </div>
 
   <!-- About Section -->
-  <div class="about-section" id="aboutSection">
-    <a href="#" class="back-btn" onclick="hideAbout()">← Back to Main Page</a>
+  <div class="hidden-section" id="about">
+    <button class="back-btn" onclick="goHome()">← Back to Main Page</button>
     <h1>About</h1>
-    <p><strong>WildCats Voices</strong> is your space to speak up and bring ideas to life! Whether it's a new spirit day, a fundraiser, or a homecoming theme, just submit your idea and we’ll bring it to the table during SCA meetings.</p>
-    <p>The Student Council is here to represent <strong>YOU</strong>, so don’t hold back — your voice matters!</p>
+    <div class="about-text">
+      <p>WildCats Voices is an open discussion board where you can bring your ideas to life! All you have to do is submit an idea, and it will be brought up during meetings. SCA is all about representing YOU! So don't be afraid!</p>
+    </div>
+  </div>
+
+  <!-- You can add content for "Get Started" and "25–26 SCA" sections below -->
+  <div class="hidden-section" id="get-started">
+    <button class="back-btn" onclick="goHome()">← Back to Main Page</button>
+    <h1>Get Started</h1>
+    <p class="about-text">Coming soon...</p>
+  </div>
+
+  <div class="hidden-section" id="sca">
+    <button class="back-btn" onclick="goHome()">← Back to Main Page</button>
+    <h1>25–26 SCA</h1>
+    <p class="about-text">Details coming soon...</p>
   </div>
 
   <script>
-    function showAbout() {
-      document.getElementById('aboutSection').style.display = 'flex';
+    function showSection(sectionId) {
+      document.getElementById("main-page").style.display = "none";
+      const sections = document.querySelectorAll(".hidden-section");
+      sections.forEach(sec => sec.style.display = "none");
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.style.display = "flex";
+      }
     }
 
-    function hideAbout() {
-      document.getElementById('aboutSection').style.display = 'none';
+    function goHome() {
+      const sections = document.querySelectorAll(".hidden-section");
+      sections.forEach(sec => sec.style.display = "none");
+      document.getElementById("main-page").style.display = "flex";
     }
-
-    // Fade-in paragraph on load
-    window.addEventListener('load', () => {
-      document.querySelector('p').style.opacity = 1;
-    });
   </script>
 </body>
 </html>
