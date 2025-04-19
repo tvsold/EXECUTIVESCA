@@ -14,7 +14,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       overflow-x: hidden;
       text-align: center;
       position: relative;
@@ -51,7 +51,7 @@
       color: white;
       text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
       font-size: 3rem;
-      margin-bottom: 1rem;
+      margin: 2rem 0 1rem;
     }
 
     .description {
@@ -91,9 +91,9 @@
       display: none;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       animation: fadeUp 0.8s ease-out forwards;
-      margin-top: 2rem;
+      padding-top: 4rem;
+      width: 100%;
     }
 
     .credits-text, .about-text {
@@ -101,10 +101,13 @@
       text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
       font-size: 1.2rem;
       max-width: 700px;
+      padding: 0 1rem;
     }
 
     .back-btn {
-      align-self: flex-start;
+      position: absolute;
+      top: 20px;
+      left: 20px;
       background: white;
       color: black;
       border: 2px solid black;
@@ -114,7 +117,7 @@
       font-family: 'Libre Baskerville', serif;
       text-decoration: none;
       transition: all 0.2s ease;
-      margin-bottom: 1rem;
+      z-index: 5;
     }
 
     .back-btn:hover {
@@ -127,13 +130,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding-top: 4rem;
     }
   </style>
 </head>
 <body>
   <div class="grain-overlay"></div>
 
-  <!-- Main Content -->
+  <!-- Main Page -->
   <div class="page-content" id="main-page">
     <h1 class="fade fade-delay-1">WildCats Voices</h1>
     <p class="description fade fade-delay-2">
@@ -147,7 +151,7 @@
     </div>
   </div>
 
-  <!-- Credits Section -->
+  <!-- Credits -->
   <div class="hidden-section" id="credits">
     <button class="back-btn" onclick="goHome()">← Back to Main Page</button>
     <h1>Credits</h1>
@@ -158,7 +162,7 @@
     </div>
   </div>
 
-  <!-- About Section -->
+  <!-- About -->
   <div class="hidden-section" id="about">
     <button class="back-btn" onclick="goHome()">← Back to Main Page</button>
     <h1>About</h1>
@@ -167,13 +171,14 @@
     </div>
   </div>
 
-  <!-- You can add content for "Get Started" and "25–26 SCA" sections below -->
+  <!-- Get Started -->
   <div class="hidden-section" id="get-started">
     <button class="back-btn" onclick="goHome()">← Back to Main Page</button>
     <h1>Get Started</h1>
     <p class="about-text">Coming soon...</p>
   </div>
 
+  <!-- SCA -->
   <div class="hidden-section" id="sca">
     <button class="back-btn" onclick="goHome()">← Back to Main Page</button>
     <h1>25–26 SCA</h1>
@@ -199,4 +204,3 @@
   </script>
 </body>
 </html>
-
