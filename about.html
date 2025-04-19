@@ -16,9 +16,9 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 2rem;
-      overflow: hidden;
       position: relative;
+      overflow: hidden;
+      padding: 2rem;
     }
 
     .grain-overlay {
@@ -41,20 +41,20 @@
       animation: fadeUp 0.8s ease-out forwards;
     }
 
-    .fade-delay-1 { animation-delay: 0.2s; }
-    .fade-delay-2 { animation-delay: 0.4s; }
+    .fade-delay-1 { animation-delay: 0.3s; }
+    .fade-delay-2 { animation-delay: 0.6s; }
 
     h1 {
       color: white;
+      text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
       font-size: 3rem;
       margin-bottom: 1rem;
-      text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
     }
 
-    .description {
-      font-size: 1.2rem;
+    .about-text {
+      font-size: 1.3rem;
       color: white;
-      max-width: 600px;
+      max-width: 700px;
       text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
     }
 
@@ -84,13 +84,12 @@
 <body>
   <div class="grain-overlay"></div>
 
-  <!-- Back to Main Page Button -->
-  <a href="index.html" class="back-btn">← Back to Main Page</a>
-
-  <!-- About Page Content -->
-  <h1 class="fade fade-delay-1">About WildCats Voices</h1>
-  <p class="description fade fade-delay-2">
-    WildCats Voices is an open discussion board where you can bring your ideas to life! All you have to do is submit an idea, and it will be brought up during meetings. SCA is all about representing YOU! So don't be afraid to share your voice!
-  </p>
+  <a href="index.html" class="back-btn fade fade-delay-1">← Back to Main Page</a>
+  <h1 class="fade fade-delay-1">About</h1>
+  <div class="about-text fade fade-delay-2">
+    <p><strong>WildCats Voices</strong> is your space to speak up and bring ideas to life! Whether it's a new spirit day, a fundraiser, or a homecoming theme, just submit your idea and we’ll bring it to the table during SCA meetings.</p>
+    <p>The Student Council is here to represent <strong>YOU</strong>, so don’t hold back — your voice matters!</p>
+  </div>
 </body>
 </html>
+
