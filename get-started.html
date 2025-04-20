@@ -69,13 +69,13 @@
       box-shadow: 0 0 10px black;
     }
 
-    /* New form styling */
     .form-container {
       background-color: rgba(255, 255, 255, 0.8);
       padding: 2rem;
       border-radius: 10px;
       width: 300px;
       margin-top: 2rem;
+      display: none; /* Hide forms initially */
     }
 
     input[type="text"],
@@ -114,6 +114,21 @@
       text-decoration: none;
       color: #4CAF50;
     }
+
+    .get-started-btn {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 2rem;
+    }
+
+    .get-started-btn:hover {
+      background-color: #45a049;
+    }
   </style>
 </head>
 <body>
@@ -126,8 +141,11 @@
     <p>Ready to speak up? Submit your idea through the form or let your SCA rep know! Your voice matters and deserves to be heard.</p>
   </div>
 
+  <!-- Get Started Button -->
+  <button class="get-started-btn" onclick="showForms()">Get Started</button>
+
   <!-- Sign-Up Form -->
-  <div class="form-container">
+  <div class="form-container" id="signup-form">
     <h2>Sign Up</h2>
     <form action="signup_process.php" method="POST">
       <input type="text" name="username" placeholder="Username" required>
@@ -135,29 +153,35 @@
       <input type="password" name="password" placeholder="Password" required>
       <button type="submit">Sign Up</button>
     </form>
-    <p class="switch-form">Already have an account? <a href="#login-form">Log In</a></p>
+    <p class="switch-form">Already have an account? <a href="javascript:void(0)" onclick="toggleForms()">Log In</a></p>
   </div>
 
   <!-- Log-In Form -->
-  <div class="form-container" id="login-form" style="display:none;">
+  <div class="form-container" id="login-form">
     <h2>Log In</h2>
     <form action="login_process.php" method="POST">
       <input type="email" name="email" placeholder="Email" required>
       <input type="password" name="password" placeholder="Password" required>
       <button type="submit">Log In</button>
     </form>
-    <p class="switch-form">Don't have an account? <a href="#signup-form">Sign Up</a></p>
+    <p class="switch-form">Don't have an account? <a href="javascript:void(0)" onclick="toggleForms()">Sign Up</a></p>
   </div>
 
   <script>
-    // Toggle between login and signup forms
-    document.querySelector('.switch-form a').addEventListener('click', function(event) {
-      event.preventDefault();
-      const signupForm = document.querySelector('.form-container');
+    function showForms() {
+      document.getElementById('signup-form').style.display = 'block';  // Show the sign-up form
+      document.getElementById('login-form').style.display = 'block';   // Show the log-in form
+      document.querySelector('.get-started-btn').style.display = 'none'; // Hide the Get Started button
+    }
+
+    function toggleForms() {
+      const signupForm = document.getElementById('signup-form');
       const loginForm = document.getElementById('login-form');
+      
+      // Toggle visibility
       signupForm.style.display = signupForm.style.display === 'none' ? 'block' : 'none';
       loginForm.style.display = loginForm.style.display === 'none' ? 'block' : 'none';
-    });
+    }
   </script>
 </body>
 </html>
