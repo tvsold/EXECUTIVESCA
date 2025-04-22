@@ -6,7 +6,6 @@
   <title>Get Started - WildCats Voices</title>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
   <style>
-    /* Existing styles */
     body {
       margin: 0;
       font-family: 'Libre Baskerville', serif;
@@ -17,21 +16,34 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 2rem;
       overflow: hidden;
+      padding: 2rem;
+      position: relative;
     }
 
     .grain-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
       opacity: 0.06;
       pointer-events: none;
       z-index: 0;
     }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade {
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out forwards;
+    }
+
+    .fade-delay-1 { animation-delay: 0.3s; }
+    .fade-delay-2 { animation-delay: 0.6s; }
+    .fade-delay-3 { animation-delay: 0.9s; }
 
     h1 {
       font-size: 3rem;
@@ -75,7 +87,7 @@
       border-radius: 10px;
       width: 300px;
       margin-top: 2rem;
-      display: none; /* Hide forms initially */
+      display: none;
     }
 
     input[type="text"],
@@ -134,18 +146,18 @@
 <body>
   <div class="grain-overlay"></div>
 
-  <a href="index.html" class="back-btn">← Back to Main Page</a>
+  <a href="index.html" class="back-btn fade fade-delay-1">← Back to Main Page</a>
 
-  <h1>Get Started</h1>
-  <div class="description">
+  <h1 class="fade fade-delay-1">Get Started</h1>
+
+  <div class="description fade fade-delay-2">
     <p>Ready to speak up? Submit your idea through the form or let your SCA rep know! Your voice matters and deserves to be heard.</p>
   </div>
 
-  <!-- Get Started Button -->
-  <button class="get-started-btn" onclick="showForms()">Get Started</button>
+  <button class="get-started-btn fade fade-delay-3" onclick="showForms()">Get Started</button>
 
   <!-- Sign-Up Form -->
-  <div class="form-container" id="signup-form">
+  <div class="form-container fade fade-delay-3" id="signup-form">
     <h2>Sign Up</h2>
     <form action="signup_process.php" method="POST">
       <input type="text" name="username" placeholder="Username" required>
@@ -157,7 +169,7 @@
   </div>
 
   <!-- Log-In Form -->
-  <div class="form-container" id="login-form">
+  <div class="form-container fade fade-delay-3" id="login-form">
     <h2>Log In</h2>
     <form action="login_process.php" method="POST">
       <input type="email" name="email" placeholder="Email" required>
@@ -169,16 +181,14 @@
 
   <script>
     function showForms() {
-      document.getElementById('signup-form').style.display = 'block';  // Show the sign-up form
-      document.getElementById('login-form').style.display = 'block';   // Show the log-in form
-      document.querySelector('.get-started-btn').style.display = 'none'; // Hide the Get Started button
+      document.getElementById('signup-form').style.display = 'block';
+      document.getElementById('login-form').style.display = 'block';
+      document.querySelector('.get-started-btn').style.display = 'none';
     }
 
     function toggleForms() {
       const signupForm = document.getElementById('signup-form');
       const loginForm = document.getElementById('login-form');
-      
-      // Toggle visibility
       signupForm.style.display = signupForm.style.display === 'none' ? 'block' : 'none';
       loginForm.style.display = loginForm.style.display === 'none' ? 'block' : 'none';
     }
