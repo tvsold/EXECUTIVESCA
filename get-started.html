@@ -16,9 +16,9 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+      position: relative;
       overflow: hidden;
       padding: 2rem;
-      position: relative;
     }
 
     .grain-overlay {
@@ -154,10 +154,11 @@
     <p>Ready to speak up? Submit your idea through the form or let your SCA rep know! Your voice matters and deserves to be heard.</p>
   </div>
 
-  <button class="get-started-btn fade fade-delay-3" onclick="showForms()">Get Started</button>
+  <!-- Get Started Button -->
+  <button type="button" class="get-started-btn fade fade-delay-3" onclick="showForms()">Get Started</button>
 
   <!-- Sign-Up Form -->
-  <div class="form-container fade fade-delay-3" id="signup-form">
+  <div class="form-container fade fade-delay-2" id="signup-form">
     <h2>Sign Up</h2>
     <form action="signup_process.php" method="POST">
       <input type="text" name="username" placeholder="Username" required>
@@ -169,7 +170,7 @@
   </div>
 
   <!-- Log-In Form -->
-  <div class="form-container fade fade-delay-3" id="login-form">
+  <div class="form-container fade fade-delay-2" id="login-form">
     <h2>Log In</h2>
     <form action="login_process.php" method="POST">
       <input type="email" name="email" placeholder="Email" required>
@@ -189,12 +190,10 @@
     function toggleForms() {
       const signupForm = document.getElementById('signup-form');
       const loginForm = document.getElementById('login-form');
+
       signupForm.style.display = signupForm.style.display === 'none' ? 'block' : 'none';
       loginForm.style.display = loginForm.style.display === 'none' ? 'block' : 'none';
     }
   </script>
 </body>
 </html>
-
-
-
